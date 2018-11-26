@@ -1,12 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <div v-if="isLoading"><p>loading</p></div>
+    <div v-else><Home :books="books"></Home></div>
   </div>
 </template>
+<script>
+import Home from '@/components/Home.vue'
+export default {
+  data(){
+    return {
+      books: [],      
+      isLoading: true
+    }
+  },
+  components: {
+    Home
+  },
+
+   methods: {
+     getBooks(){
+       var url = "https://api.myjson.com/bins/udbm5"
+       fetch(url)
+      .then(response => response.json())
+      .then(response => {
+           this.books = response.books
+           console.log(this.books)
+           this.isLoading = false
+      })
+     }  
+        },
+        created(){
+          this.getBooks()
+        }
+}
+</script>
 
 <style>
 #app {
@@ -28,4 +55,5 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>
