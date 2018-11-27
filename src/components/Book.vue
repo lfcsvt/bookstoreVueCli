@@ -7,7 +7,7 @@
     <div class="flip-card-back">
       <h1>{{oneBook.titulo}}</h1> 
       <p>{{oneBook.descripcion}}</p> 
-      <img :src=oneBook.detalle alt="" style="width:200px;height:150px;">
+      <img :src=oneBook.detalle alt="" style="width:100px;height:100px;">
       <p><button class="book-button">Info</button></p>
     </div>
   </div>
@@ -19,7 +19,7 @@ export default {
     name: "Book",
     props: ["oneBook"],
     created (){
-      console.log(this.oneBook.portada)
+      console.log()
     }
 }
 </script>

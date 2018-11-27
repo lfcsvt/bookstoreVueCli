@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+       <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/BookList">Book List</router-link>
+    </div>
+    <!-- <router-view/> -->
     <div v-if="isLoading"><p>loading</p></div>
     <div v-else><Home :books="books"></Home></div>
   </div>
@@ -9,7 +14,7 @@ import Home from '@/components/Home.vue'
 export default {
   data(){
     return {
-      books: [],      
+      books: [],     
       isLoading: true
     }
   },
@@ -24,7 +29,6 @@ export default {
       .then(response => response.json())
       .then(response => {
            this.books = response.books
-           console.log(this.books)
            this.isLoading = false
       })
      }  

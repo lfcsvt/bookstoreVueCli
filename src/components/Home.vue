@@ -1,8 +1,19 @@
 <template>
   <div class="home">
-      <BookShopNavbar/>
+        <!-- <div>
+          <nav class="navbar navbar-light bg-light top">
+        <a class="navbar-brand">
+            <img src="" width="50" height="50" alt="">
+            The BookShop
+        </a>   -->
+<p>Search your books here: <input type="text" v-model="search" placeholder="Search Books">
+     </p>
+          
+   
+    <!-- </nav>
+    </div> -->
   <div class="home-place">
-      <div class="book-shelf" v-for="(book, index) in books" :key="index">
+      <div class="book-shelf" v-for="(book, index) in filteredBooks" :key="index">
          <Book v-bind:oneBook="book"/>
     </div>
   </div>
@@ -12,19 +23,26 @@
 
 <script>
 import Book from "@/components/Book.vue";
-import BookShopNavbar from "@/components/BookShopNavbar.vue";
 
 export default {
   name: 'home',
   components: {
-    Book,
-     BookShopNavbar
+    Book
   },
   props:['books'],
 
-  created (){
-    
-}
+  data (){
+  return {
+    search: ''
+  }    
+},
+ computed: {
+          filteredBooks(){
+            return this.books.filter((book)=> {
+              return book.titulo && book.descripcion.toLowerCase().match(this.search.toLowerCase())
+            })
+          }
+        }
 }
 </script>
 <style>
