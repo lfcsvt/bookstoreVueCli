@@ -8,35 +8,32 @@
       <h1>{{oneBook.titulo}}</h1> 
       <p>{{oneBook.descripcion}}</p> 
       <img :src=oneBook.detalle alt="" style="width:100px;height:100px;">
-      <p><button class="book-button">Info</button></p>
+      <div class="button-div"><Modal/></div>
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import Modal from "@/components/Modal.vue";
 export default {
     name: "Book",
     props: ["oneBook"],
+    components: {
+      Modal
+    },
     created (){
-      console.log()
     }
 }
 </script>
 <style scoped>
- .book-button {
-   width:100px;
-   height: 30px;
-   margin-top: 10px;
-   background-color: blue;
+ .button-div {
+
+   margin-top: 40px !important;
+
    color: white;
    border-radius: 5px;
    text-align: center;
-   padding-bottom: 10px;
-   position: absolute;
-   bottom: 30px;
-   left: 100px;
-   align-content: center;
    }
  .flip-card {
   background-color: transparent;

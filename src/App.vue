@@ -1,27 +1,40 @@
 <template>
   <div id="app">
-       <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/BookList">Book List</router-link>
+    <div v-if="!dataAreIn">
+      <p>loading......</p>
     </div>
-    <!-- <router-view/> -->
-    <div v-if="isLoading"><p>loading</p></div>
-    <div v-else><Home :books="books"></Home></div>
+    <!-- <div v-if="isLoading"><p>loading</p></div> -->
+    <div v-else>
+       <div id="nav">
+         <router-link :to="{ name: 'home', params: { allBooks: this.books }}">
+            Home
+          </router-link>
+      <!-- <router-link to="/">Home</router-link> | -->
+            <router-link :to="{ name: 'bookList', params: { allBooks: this.books }}">Book List</router-link>
+        </div>
+     
+        <router-view/>
+    </div>
   </div>
 </template>
 <script>
-import Home from '@/components/Home.vue'
+
 export default {
   data(){
     return {
       books: [],     
-      isLoading: true
+      // isLoading: true
     }
   },
   components: {
-    Home
+ 
   },
+  computed:{
+    dataAreIn(){
+      return this.books.length > 0
+    }
 
+  },
    methods: {
      getBooks(){
        var url = "https://api.myjson.com/bins/udbm5"
@@ -29,7 +42,8 @@ export default {
       .then(response => response.json())
       .then(response => {
            this.books = response.books
-           this.isLoading = false
+           console.log(this.books)
+          //  this.isLoading = false
       })
      }  
         },
