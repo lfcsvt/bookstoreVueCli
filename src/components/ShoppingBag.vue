@@ -3,7 +3,7 @@
     <b-button variant="primary" @click="showModal">
       My Cart
     </b-button>
-    <b-modal ref="myModalRef" hide-footer title="Your cart">
+    <b-modal ref="myModalRef" hide-footer title="Your cart" style="color: black;">
       <div class="d-block text-center">
         <table>
         <thead>
@@ -50,6 +50,7 @@ table, th, td {
     border: 1px solid black;
     margin: 30px;
     font-weight: 30px;
+    color: black;
 }
 </style>
 

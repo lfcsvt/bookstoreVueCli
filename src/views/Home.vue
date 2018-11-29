@@ -81,7 +81,7 @@ created (){
 
 .wraper {
   overflow: auto;
-  height: 800px;
+  height: 700px;
 }
 </style>
 
