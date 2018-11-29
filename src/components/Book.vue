@@ -8,7 +8,7 @@
       <h1>{{oneBook.titulo}}</h1> 
       <p>{{oneBook.descripcion}}</p> 
       <img :src=oneBook.detalle alt="" style="width:100px;height:100px;">
-      <div class="button-div"><Modal/></div>
+      <div class="button-div"><Modal v-bind:oneBook="oneBook"/></div>
     </div>
   </div>
 </div>
@@ -22,7 +22,15 @@ export default {
     components: {
       Modal
     },
+    data(){
+      return {
+        cartItems: [],
+      }
+    },
     created (){
+      
+       this.cartItems = this.$parent.hCartItems
+       console.log(this.cartItems.length)
     }
 }
 </script>

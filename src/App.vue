@@ -3,14 +3,17 @@
     <div v-if="!dataAreIn">
       <p>loading......</p>
     </div>
-    <!-- <div v-if="isLoading"><p>loading</p></div> -->
+
     <div v-else>
        <div id="nav">
          <router-link :to="{ name: 'home', params: { allBooks: this.books }}">
             Home
-          </router-link>
-      <!-- <router-link to="/">Home</router-link> | -->
-            <router-link :to="{ name: 'bookList', params: { allBooks: this.books }}">Book List</router-link>
+          </router-link> |
+    
+            <router-link :to="{ name: 'bookList', params: { allBooks: this.books }}">
+              Book List
+
+            </router-link>
         </div>
      
         <router-view/>
@@ -42,7 +45,7 @@ export default {
       .then(response => response.json())
       .then(response => {
            this.books = response.books
-           console.log(this.books)
+          //  console.log(this.books)
           //  this.isLoading = false
       })
      }  
